@@ -26,6 +26,7 @@ public class ProtobufWFResource
    @Consumes("text/plain")
    @Produces("text/plain")
    public String jsonString(String s) {
+      System.out.println("returning: tanicka" + s);
       return "tanicka" + s;
    }
    
