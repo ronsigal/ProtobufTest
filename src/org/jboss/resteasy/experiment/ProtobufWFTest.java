@@ -8,7 +8,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.plugins.protobuf.ProtobufProvider;
-import org.jboss.resteasy.utils.PortProviderUtil;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;

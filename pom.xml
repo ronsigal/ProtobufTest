@@ -10,23 +10,43 @@
   </properties>
   
   <dependencies>
-          <dependency>
+          <!--dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>arquillian-utils</artifactId>
             <version>${resteasy.version}</version>
             <scope>provided</scope>
-        </dependency>
+        </dependency-->
 
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-core-spi</artifactId>
+            <artifactId>resteasy-core</artifactId>
             <version>${resteasy.version}</version>
             <scope>provided</scope>
         </dependency>
         
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-core-spi</artifactId>
+            <version>${resteasy.version}</version>
+            <scope>provided</scope>
+        </dependency>
+       
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-client</artifactId>
+            <version>${resteasy.version}</version>
+            <scope>provided</scope>
+        </dependency>
+         
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-protobuf-provider</artifactId>
+            <version>${resteasy.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-json-binding-provider</artifactId>
             <version>${resteasy.version}</version>
         </dependency>
 
