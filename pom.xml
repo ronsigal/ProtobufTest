@@ -41,7 +41,7 @@
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-protobuf-provider</artifactId>
-            <version>${resteasy.version}</version>
+            <version>4.6.0-SNAPSHOT</version>
         </dependency>
         
         <dependency>
