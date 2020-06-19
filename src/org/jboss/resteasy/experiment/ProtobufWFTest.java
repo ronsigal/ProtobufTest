@@ -33,7 +33,8 @@ public class ProtobufWFTest {
    private static VeryBigPerson_proto.VeryBigPerson veryBigRon_proto = PersonUtil.getVeryBigPerson_proto("ron");
 
    private String generateURL(String path) {
-      return PortProviderUtil.generateURL(path, "ProtobufTest-0.0.1-SNAPSHOT");
+//      return PortProviderUtil.generateURL(path, "ProtobufTest-0.0.1-SNAPSHOT");
+      return PortProviderUtil.generateURL(path, "https://eap-app-protobuf-test.6923.rh-us-east-1.openshiftapps.com/");
    }
 
    @BeforeClass
