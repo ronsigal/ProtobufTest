@@ -22,6 +22,14 @@ public class ProtobufWFResource
    }
 
    @POST
+   @Path("json/string")
+   @Consumes("application/json")
+   @Produces("application/json")
+   public String jsonString(Person person) {
+      return "tanicka";
+   }
+   
+   @POST
    @Path("protobuf")
    @Consumes("application/protobuf")
    @Produces("application/protobuf")
