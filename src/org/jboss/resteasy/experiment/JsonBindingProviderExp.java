@@ -15,11 +15,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyReader;
+import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
 
 import org.jboss.resteasy.plugins.providers.jsonb.JsonBindingProvider;
 import org.jboss.resteasy.plugins.providers.jsonb.i18n.Messages;
-import org.jboss.resteasy.spi.AsyncMessageBodyWriter;
 import org.jboss.resteasy.util.DelegatingOutputStream;
 
 /**
@@ -30,13 +30,17 @@ import org.jboss.resteasy.util.DelegatingOutputStream;
 @Consumes({"application/json", "application/*+json", "text/json"})
 @Priority(Priorities.USER-500)
 public class JsonBindingProviderExp extends JsonBindingProvider
-      implements MessageBodyReader<Object>, AsyncMessageBodyWriter<Object> {
+      implements MessageBodyReader<Object>, MessageBodyWriter<Object> {
 
    private static long size;
 
    public static long getSize()
    {
       return size;
+   }
+   
+   public static void setSize(long size) {
+      JsonBindingProviderExp.size = size;
    }
 
    @Override
@@ -65,4 +69,19 @@ public class JsonBindingProviderExp extends JsonBindingProvider
          throw new ProcessingException(Messages.MESSAGES.jsonBSerializationError(e.toString()), e);
       }
    }
+//
+//   @Override
+//   public CompletionStage<Void> asyncWriteTo(Object t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType,
+//                                             MultivaluedMap<String, Object> httpHeaders, AsyncOutputStream entityStream) {
+//      Jsonb jsonb = getJsonb(type);
+//      try
+//      {
+//         return entityStream.asyncWrite(jsonb.toJson(t).getBytes(getCharset(mediaType)));
+//      } catch (Throwable e)
+//      {
+//         CompletableFuture<Void> ret = new CompletableFuture();
+//         ret.completeExceptionally(new ProcessingException(Messages.MESSAGES.jsonBSerializationError(e.toString()), e));
+//         return ret;
+//      }
+//   }
 }

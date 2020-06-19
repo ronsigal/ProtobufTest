@@ -3,12 +3,6 @@
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <dependent-module archiveName="resteasy-protobuf-provider-4.6.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/resteasy-protobuf-provider/resteasy-protobuf-provider">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="resteasy-json-binding-provider-4.6.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/resteasy-json-binding-provider/resteasy-json-binding-provider">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <property name="context-root" value="ProtobufTest"/>
         <property name="java-output-path" value="/ProtobufTest/build/classes"/>
     </wb-module>
