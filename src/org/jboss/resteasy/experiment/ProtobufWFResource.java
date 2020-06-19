@@ -19,7 +19,7 @@ public class ProtobufWFResource
    @Consumes("application/json")
    @Produces("application/json")
    public Person json(Person person) {
-      System.out.println("json: " + person);
+//      System.out.println("json: " + person);
       return tanicka;
    }
 
@@ -28,7 +28,7 @@ public class ProtobufWFResource
    @Consumes("text/plain")
    @Produces("text/plain")
    public String stringString(String s) {
-      System.out.println("returning: tanicka" + s);
+//      System.out.println("returning: tanicka" + s);
       return "tanicka" + s;
    }
    
@@ -36,7 +36,7 @@ public class ProtobufWFResource
    @Path("string")
    @Produces("text/plain")
    public String string() {
-      System.out.println("returning: tanicka");
+//      System.out.println("returning: tanicka");
       return "tanicka";
    }
    
