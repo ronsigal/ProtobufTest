@@ -19,17 +19,17 @@
 
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-core</artifactId>
+            <artifactId>resteasy-jaxrs</artifactId>
             <version>${resteasy.version}</version>
             <scope>provided</scope>
         </dependency>
         
-        <dependency>
+        <!--dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-core-spi</artifactId>
             <version>${resteasy.version}</version>
             <scope>provided</scope>
-        </dependency>
+        </dependency-->
        
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
