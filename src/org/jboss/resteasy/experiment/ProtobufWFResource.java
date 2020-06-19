@@ -32,7 +32,7 @@ public class ProtobufWFResource
    }
    
    @GET
-   @Path("string/string")
+   @Path("string")
    @Produces("text/plain")
    public String string() {
       System.out.println("returning: tanicka");
