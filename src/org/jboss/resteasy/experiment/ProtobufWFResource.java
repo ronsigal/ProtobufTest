@@ -22,11 +22,11 @@ public class ProtobufWFResource
    }
 
    @POST
-   @Path("json/string")
-   @Consumes("application/json")
-   @Produces("application/json")
-   public String jsonString(Person person) {
-      return "tanicka";
+   @Path("string/string")
+   @Consumes("text/plain")
+   @Produces("text/plain")
+   public String jsonString(String s) {
+      return "tanicka" + s;
    }
    
    @POST
