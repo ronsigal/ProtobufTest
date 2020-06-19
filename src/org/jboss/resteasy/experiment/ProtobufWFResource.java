@@ -1,6 +1,7 @@
 package org.jboss.resteasy.experiment;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -25,9 +26,17 @@ public class ProtobufWFResource
    @Path("string/string")
    @Consumes("text/plain")
    @Produces("text/plain")
-   public String jsonString(String s) {
+   public String stringString(String s) {
       System.out.println("returning: tanicka" + s);
       return "tanicka" + s;
+   }
+   
+   @GET
+   @Path("string/string")
+   @Produces("text/plain")
+   public String string() {
+      System.out.println("returning: tanicka");
+      return "tanicka";
    }
    
    @POST
