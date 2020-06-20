@@ -30,8 +30,12 @@ import com.google.protobuf.Parser;
 
 public class ProtobufCompiler
 {
-   private static final String PROTOC = "/home/rsigal/bin/protoc ";
-   private static final String PROTOBUF_JAVA_JAR = "/home/rsigal/tmp/git.master.proto/Resteasy/testsuite/integration-tests/target/test-server/wildfly-19.0.0.Final/modules/system/layers/base/org/jboss/resteasy/resteasy-jaxrs/main/protobuf-java-3.12.0.jar";
+//   private static final String PROTOC = "/home/rsigal/bin/protoc ";
+//   private static final String PROTOBUF_JAVA_JAR = "/home/rsigal/tmp/git.master.proto/Resteasy/testsuite/integration-tests/target/test-server/wildfly-19.0.0.Final/modules/system/layers/base/org/jboss/resteasy/resteasy-jaxrs/main/protobuf-java-3.12.0.jar";
+   private static final String RESOURCES_DIR = System.getProperty("user.dir") + "/resources";
+   private static final String PROTOC = RESOURCES_DIR + "/protoc ";
+   private static final String PROTOBUF_JAVA_JAR = RESOURCES_DIR + "/protobuf-java-3.12.0.jar";
+
    
    public static Message compile(String directory, Object source) throws Exception
    {
@@ -185,6 +189,7 @@ public class ProtobufCompiler
    { 
       URLClassLoader classLoader = null;
       StandardJavaFileManager fileManager = null;
+      System.out.println("Working Directory = " + System.getProperty("user.dir"));
 
       File file = new File(directory + classnameToFilename("/" + clazz.getName() + "_proto") + ".java");
       Message message = null;
