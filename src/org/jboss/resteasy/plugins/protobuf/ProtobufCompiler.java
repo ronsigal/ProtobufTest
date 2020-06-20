@@ -176,6 +176,16 @@ public class ProtobufCompiler
    {
       System.out.println("jboss.home.dir: " + System.getProperty("jboss.home.dir "));
       File f = new File(System.getProperty("/opt/eap"));
+      if (f != null)
+      {
+         String[] pathnames = f.list();
+
+         // For each pathname in the pathnames array
+         for (String pathname : pathnames) {
+             // Print the names of files and directories
+             System.out.println(pathname);
+         }
+      }
       System.out.println("user.dir: " + System.getProperty("user.dir"));
       System.out.println("JBOSS_HOME: " + System.getenv("$JBOSS_HOME"));
       System.out.println("jboss.home.dir: " + System.getProperty("jboss.home.dir"));
@@ -185,13 +195,13 @@ public class ProtobufCompiler
       for (Entry<String, String> entry : map.entrySet()) {
          System.out.println(entry.getKey() + "->" + entry.getValue());
       }
-      String[] pathnames = f.list();
-
-      // For each pathname in the pathnames array
-      for (String pathname : pathnames) {
-          // Print the names of files and directories
-          System.out.println(pathname);
-      }
+//      String[] pathnames = f.list();
+//
+//      // For each pathname in the pathnames array
+//      for (String pathname : pathnames) {
+//          // Print the names of files and directories
+//          System.out.println(pathname);
+//      }
       
       String command = PROTOC + "-I=" + directory + " --java_out=" + directory + " " + protoFilename;
       Runtime run  = Runtime.getRuntime(); 
