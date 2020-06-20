@@ -13,6 +13,8 @@ import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.tools.Diagnostic;
@@ -172,7 +174,17 @@ public class ProtobufCompiler
 
    private static void compileProtoDescriptor(String directory, String protoFilename) throws IOException, InterruptedException
    {
-      File f = new File(System.getProperty("user.dir"));
+      System.out.println("jboss.home.dir: " + System.getProperty("jboss.home.dir "));
+      File f = new File(System.getProperty("/opt/eap"));
+      System.out.println("user.dir: " + System.getProperty("user.dir"));
+      System.out.println("JBOSS_HOME: " + System.getenv("$JBOSS_HOME"));
+      System.out.println("jboss.home.dir: " + System.getProperty("jboss.home.dir"));
+      System.out.println("jboss.server.config.url: " + System.getProperty("jboss.server.config.url"));
+      System.out.println("jboss.server.config.url: " + System.getenv("jboss.server.config.url"));
+      Map<String, String> map = System.getenv();
+      for (Entry<String, String> entry : map.entrySet()) {
+         System.out.println(entry.getKey() + "->" + entry.getValue());
+      }
       String[] pathnames = f.list();
 
       // For each pathname in the pathnames array
