@@ -172,6 +172,15 @@ public class ProtobufCompiler
 
    private static void compileProtoDescriptor(String directory, String protoFilename) throws IOException, InterruptedException
    {
+      File f = new File(System.getProperty("user.dir"));
+      String[] pathnames = f.list();
+
+      // For each pathname in the pathnames array
+      for (String pathname : pathnames) {
+          // Print the names of files and directories
+          System.out.println(pathname);
+      }
+      
       String command = PROTOC + "-I=" + directory + " --java_out=" + directory + " " + protoFilename;
       Runtime run  = Runtime.getRuntime(); 
       Process proc = run.exec(command);
