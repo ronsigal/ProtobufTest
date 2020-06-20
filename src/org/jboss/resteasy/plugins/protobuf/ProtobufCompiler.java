@@ -188,7 +188,7 @@ public class ProtobufCompiler
          }
       }
       f = new File("/opt/eap/standalone/deployments/ProtobufTest-0.0.1-SNAPSHOT.war");
-      System.out.println("/opt/eap/standalone/deployments/WebContent/WEB-INF/lib/:");
+      System.out.println("/opt/eap/standalone/deployments/ProtobufTest-0.0.1-SNAPSHOT.war:");
       if (f != null)
       {
          String[] pathnames = f.list();
