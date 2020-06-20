@@ -176,6 +176,7 @@ public class ProtobufCompiler
    {
       System.out.println("jboss.home.dir: " + System.getProperty("jboss.home.dir "));
       File f = new File("/opt/eap");
+      System.out.println("/opt/eap:");
       if (f != null)
       {
          String[] pathnames = f.list();
@@ -186,15 +187,27 @@ public class ProtobufCompiler
              System.out.println(pathname);
          }
       }
-      System.out.println("user.dir: " + System.getProperty("user.dir"));
-      System.out.println("JBOSS_HOME: " + System.getenv("$JBOSS_HOME"));
-      System.out.println("jboss.home.dir: " + System.getProperty("jboss.home.dir"));
-      System.out.println("jboss.server.config.url: " + System.getProperty("jboss.server.config.url"));
-      System.out.println("jboss.server.config.url: " + System.getenv("jboss.server.config.url"));
-      Map<String, String> map = System.getenv();
-      for (Entry<String, String> entry : map.entrySet()) {
-         System.out.println(entry.getKey() + "->" + entry.getValue());
+      f = new File("/opt/eap/standalone/deployments");
+      System.out.println("/opt/eap/standalone/deployments:");
+      if (f != null)
+      {
+         String[] pathnames = f.list();
+
+         // For each pathname in the pathnames array
+         for (String pathname : pathnames) {
+             // Print the names of files and directories
+             System.out.println(pathname);
+         }
       }
+//      System.out.println("user.dir: " + System.getProperty("user.dir"));
+//      System.out.println("JBOSS_HOME: " + System.getenv("$JBOSS_HOME"));
+//      System.out.println("jboss.home.dir: " + System.getProperty("jboss.home.dir"));
+//      System.out.println("jboss.server.config.url: " + System.getProperty("jboss.server.config.url"));
+//      System.out.println("jboss.server.config.url: " + System.getenv("jboss.server.config.url"));
+//      Map<String, String> map = System.getenv();
+//      for (Entry<String, String> entry : map.entrySet()) {
+//         System.out.println(entry.getKey() + "->" + entry.getValue());
+//      }
 //      String[] pathnames = f.list();
 //
 //      // For each pathname in the pathnames array
