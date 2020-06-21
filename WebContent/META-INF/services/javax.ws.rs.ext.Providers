@@ -1,2 +1,3 @@
 org.jboss.resteasy.plugins.protobuf.ProtobufProvider
-
+org.jboss.resteasy.plugins.interceptors.GZIPEncodingInterceptor
+org.jboss.resteasy.plugins.interceptors.GZIPDecodingInterceptor
