@@ -61,9 +61,9 @@ public class JsonBindingProviderExp extends JsonBindingProvider
          };
          entityStream.write(jsonb.toJson(t).getBytes(getCharset(mediaType)));
          entityStream.flush();
-         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-         baos.write(jsonb.toJson(t).getBytes(getCharset(mediaType)));
-         size += baos.toByteArray().length;
+//         ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//         baos.write(jsonb.toJson(t).getBytes(getCharset(mediaType)));
+//         size += baos.toByteArray().length;
       } catch (Throwable e)
       {
          throw new ProcessingException(Messages.MESSAGES.jsonBSerializationError(e.toString()), e);

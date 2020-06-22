@@ -174,31 +174,31 @@ public class ProtobufCompiler
 
    private static void compileProtoDescriptor(String directory, String protoFilename) throws IOException, InterruptedException
    {
-      System.out.println("jboss.home.dir: " + System.getProperty("jboss.home.dir "));
-      File f = new File("/opt/eap");
-      System.out.println("/opt/eap:");
-      if (f != null)
-      {
-         String[] pathnames = f.list();
-
-         // For each pathname in the pathnames array
-         for (String pathname : pathnames) {
-             // Print the names of files and directories
-             System.out.println(pathname);
-         }
-      }
-      f = new File("/opt/eap/standalone/deployments/ProtobufTest-0.0.1-SNAPSHOT.war");
-      System.out.println("/opt/eap/standalone/deployments/ProtobufTest-0.0.1-SNAPSHOT.war:");
-      if (f != null)
-      {
-         String[] pathnames = f.list();
-
-         // For each pathname in the pathnames array
-         for (String pathname : pathnames) {
-             // Print the names of files and directories
-             System.out.println(pathname);
-         }
-      }
+//      System.out.println("jboss.home.dir: " + System.getProperty("jboss.home.dir "));
+//      File f = new File("/opt/eap");
+//      System.out.println("/opt/eap:");
+//      if (f != null)
+//      {
+//         String[] pathnames = f.list();
+//
+//         // For each pathname in the pathnames array
+//         for (String pathname : pathnames) {
+//             // Print the names of files and directories
+//             System.out.println(pathname);
+//         }
+//      }
+//      f = new File("/opt/eap/standalone/deployments/ProtobufTest-0.0.1-SNAPSHOT.war");
+//      System.out.println("/opt/eap/standalone/deployments/ProtobufTest-0.0.1-SNAPSHOT.war:");
+//      if (f != null)
+//      {
+//         String[] pathnames = f.list();
+//
+//         // For each pathname in the pathnames array
+//         for (String pathname : pathnames) {
+//             // Print the names of files and directories
+//             System.out.println(pathname);
+//         }
+//      }
 //      System.out.println("user.dir: " + System.getProperty("user.dir"));
 //      System.out.println("JBOSS_HOME: " + System.getenv("$JBOSS_HOME"));
 //      System.out.println("jboss.home.dir: " + System.getProperty("jboss.home.dir"));

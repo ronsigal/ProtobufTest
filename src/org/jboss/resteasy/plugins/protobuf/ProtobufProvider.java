@@ -77,9 +77,9 @@ public class ProtobufProvider<T> implements MessageBodyReader<T>, MessageBodyWri
          {
             message = new ProtobufCompiler().compile(directory, t);
          }
-         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-         message.writeTo(baos);
-         size += baos.toByteArray().length;
+//         ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//         message.writeTo(baos);
+//         size += baos.toByteArray().length;
          message.writeTo(entityStream);
       }
       catch (Exception e)
