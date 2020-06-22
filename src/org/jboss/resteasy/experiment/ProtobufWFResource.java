@@ -54,7 +54,7 @@ public class ProtobufWFResource
    }
    
    @POST
-   @Path("protobuf/gzip")
+   @Path("protobuf/zip")
    @Consumes("application/protobuf")
    @Produces("application/protobuf")
    @GZIP
