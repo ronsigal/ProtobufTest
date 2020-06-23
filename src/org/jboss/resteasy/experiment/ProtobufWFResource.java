@@ -95,6 +95,33 @@ public class ProtobufWFResource
       return veryBigTanicka_proto;
    }
    
+   @POST
+   @Path("big/json/zip")
+   @Consumes("application/json")
+   @Produces("application/json")
+   @GZIP
+   public VeryBigPerson veryBigJsonZip(@GZIP VeryBigPerson person) throws Exception {
+      return veryBigTanicka;
+   }
+
+   @POST
+   @Path("big/protobuf/zip")
+   @Consumes("application/protobuf")
+   @Produces("application/protobuf")
+   @GZIP
+   public VeryBigPerson veryBigProtoZip(@GZIP VeryBigPerson person) throws Exception {
+      return veryBigTanicka;
+   }
+   
+   @POST
+   @Path("big/protobuf/proto/zip")
+   @Consumes("application/protobuf")
+   @Produces("application/protobuf")
+   @GZIP
+   public VeryBigPerson_proto.VeryBigPerson protoZip(@GZIP VeryBigPerson_proto.VeryBigPerson person) {
+      return veryBigTanicka_proto;
+   }
+   
 
    @POST
    @Path("string/string")
