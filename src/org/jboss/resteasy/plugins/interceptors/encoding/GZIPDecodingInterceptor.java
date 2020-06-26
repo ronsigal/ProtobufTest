@@ -1,5 +1,9 @@
 package org.jboss.resteasy.plugins.interceptors.encoding;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.zip.GZIPInputStream;
+
 import javax.annotation.Priority;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.ProcessingException;
@@ -11,16 +15,12 @@ import javax.ws.rs.ext.Provider;
 import javax.ws.rs.ext.ReaderInterceptor;
 import javax.ws.rs.ext.ReaderInterceptorContext;
 
-import org.jboss.resteasy.core.interception.ServerReaderInterceptorContext;
-import org.jboss.resteasy.microprofile.config.ResteasyConfigFactory;
-import org.jboss.resteasy.microprofile.config.ResteasyConfig.SOURCE;
+import org.jboss.resteasy.core.ResteasyContext;
+import org.jboss.resteasy.core.interception.jaxrs.ServerReaderInterceptorContext;
 import org.jboss.resteasy.plugins.server.servlet.ResteasyContextParameters;
 import org.jboss.resteasy.resteasy_jaxrs.i18n.LogMessages;
 import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.zip.GZIPInputStream;
+import org.jboss.resteasy.spi.ResteasyConfiguration;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
@@ -31,8 +31,6 @@ import java.util.zip.GZIPInputStream;
 public class GZIPDecodingInterceptor implements ReaderInterceptor
 {
    private static final int DEFAULT_MAX_SIZE = 10000000;
-   private static final String DEFAULT_MAX_SIZE_STRING = Integer.toString(DEFAULT_MAX_SIZE);
-
    private int maxSize;
 
    public GZIPDecodingInterceptor(final int maxSize)
@@ -133,15 +131,28 @@ public class GZIPDecodingInterceptor implements ReaderInterceptor
          return maxSize;
       }
 
-      try
+      int size = -1;
+      ResteasyConfiguration context = ResteasyContext.getContextData(ResteasyConfiguration.class);
+      if (context != null)
       {
-         String max = ResteasyConfigFactory.getConfig().getValue(ResteasyContextParameters.RESTEASY_GZIP_MAX_INPUT, SOURCE.SERVLET_CONTEXT, DEFAULT_MAX_SIZE_STRING);
-         return Integer.parseInt(max);
+         String s = context.getParameter(ResteasyContextParameters.RESTEASY_GZIP_MAX_INPUT);
+         if (s != null)
+         {
+            try
+            {
+               size = Integer.parseInt(s);
+            }
+            catch (NumberFormatException e)
+            {
+               LogMessages.LOGGER.invalidFormat(ResteasyContextParameters.RESTEASY_GZIP_MAX_INPUT, Integer.toString(DEFAULT_MAX_SIZE));
+            }
+         }
       }
-      catch (IllegalArgumentException e)
+      if (size == -1)
       {
-         LogMessages.LOGGER.invalidFormat(ResteasyContextParameters.RESTEASY_GZIP_MAX_INPUT, DEFAULT_MAX_SIZE_STRING);
-         return DEFAULT_MAX_SIZE;
+         size = DEFAULT_MAX_SIZE;
       }
+
+      return size;
    }
 }

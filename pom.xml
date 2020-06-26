@@ -6,7 +6,8 @@
   <packaging>war</packaging>
   
   <properties>
-    <resteasy.version>3.12.0.Final</resteasy.version>
+    <!--resteasy.version>3.12.0.Final</resteasy.version-->
+    <resteasy.version>4.5.5.Final</resteasy.version>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
@@ -21,8 +22,15 @@
 
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jaxrs</artifactId>
+            <artifactId>resteasy-core</artifactId>
             <version>${resteasy.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-client-vertx</artifactId>
+            <version>4.5.5.Final</version>
             <scope>provided</scope>
         </dependency>
         

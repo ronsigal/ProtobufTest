@@ -23,7 +23,7 @@ public class ProtobufWFResource
    @Consumes("application/json")
    @Produces("application/json")
    public Person json(Person person) {
-//      System.out.println("json: " + person);
+      System.out.println("json: " + person);
       return tanicka;
    }
    

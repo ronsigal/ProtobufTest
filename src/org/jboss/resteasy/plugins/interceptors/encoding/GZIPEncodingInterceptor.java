@@ -22,6 +22,8 @@ import java.util.zip.GZIPOutputStream;
 @Priority(Priorities.ENTITY_CODER)
 public class GZIPEncodingInterceptor implements WriterInterceptor
 {
+   public static long count;
+   
    public static class EndableGZIPOutputStream extends GZIPOutputStream
    {
       public EndableGZIPOutputStream(final OutputStream os) throws IOException
@@ -33,6 +35,8 @@ public class GZIPEncodingInterceptor implements WriterInterceptor
       public void finish() throws IOException
       {
          super.finish();
+         count += def.getBytesWritten();
+//         System.out.println("count: " + count);
          def.end(); // make sure on finish the deflater's end() is called to release the native code pointer
       }
    }
