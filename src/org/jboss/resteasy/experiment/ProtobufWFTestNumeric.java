@@ -38,7 +38,7 @@ import reactor.netty.http.client.HttpClient;
  * @tpSince RESTEasy 3.x.y
  * @tpTestCaseDetails Regression test for RESTEASY-zzz
  */
-public class ProtobufWFTest2 {
+public class ProtobufWFTestNumeric {
 
    private static int count = 1000;
 
@@ -57,7 +57,9 @@ public class ProtobufWFTest2 {
    private static final Variant PROTOBUF_ZIP_VARIANT = new Variant(PROTOBUF_MEDIA_TYPE, (String) null, "gzip");
    private static final Variant JSON_ZIP_VARIANT = new Variant(MediaType.APPLICATION_JSON_TYPE, (String) null, "gzip");
    private static VeryBigPerson veryBigRon = PersonUtil.getVeryBigPerson("ron");
+   private static VeryBigPersonNumeric veryBigRonNumeric = PersonUtil.getVeryBigPersonNumeric();
    private static VeryBigPerson_proto.VeryBigPerson veryBigRon_proto = PersonUtil.getVeryBigPerson_proto();
+   private static VeryBigPersonNumeric_proto.VeryBigPersonNumeric veryBigRonNumeric_proto = PersonUtil.getVeryBigPersonNumeric_proto();
 
    private String generateURL(String path) {
       //            return PortProviderUtil.generateURL(path, "ProtobufTest-0.0.1-SNAPSHOT");
@@ -112,10 +114,6 @@ public class ProtobufWFTest2 {
       clientBuilder.register(GZIPEncodingInterceptor.class);
       clientBuilder.register(GZIPDecodingInterceptor.class);
       nettyClient = builder.build();
-//      nettyClient.register(ProtobufProvider.class);
-//      nettyClient.register(JsonBindingProviderExp.class);
-//      nettyClient.register(GZIPEncodingInterceptor.class);
-//      nettyClient.register(GZIPDecodingInterceptor.class);
    }
 
    @AfterClass
@@ -240,7 +238,7 @@ public class ProtobufWFTest2 {
    private void doTestOnce(Client client, Variant variant, String transport, boolean async) throws Exception
    {
       Builder request = client.target(generateURL("/big/" + transport)).request();
-      Object entity = "json".equals(transport) ? veryBigRon : veryBigRon_proto;
+      Object entity = "json".equals(transport) ? veryBigRonNumeric : veryBigRonNumeric_proto;
       Response response = null;
       if (async) {
          Future<Response> future = request.async().post(Entity.entity(entity, variant));
@@ -251,11 +249,11 @@ public class ProtobufWFTest2 {
 //      System.out.println("status: " + response.getStatus());
 //      System.out.println("result: " + response.readEntity(String.class));
       if ("json".equals(transport)) {
-         VeryBigPerson person = response.readEntity(VeryBigPerson.class);
-         Assert.assertEquals("tanicka", person.getS0());
+         VeryBigPersonNumeric person = response.readEntity(VeryBigPersonNumeric.class);
+//         Assert.assertEquals("tanicka", person.getS0());
       } else {
-         VeryBigPerson_proto.VeryBigPerson person = response.readEntity(VeryBigPerson_proto.VeryBigPerson .class);
-         Assert.assertTrue("tanicka".equals(person.getS0()));
+         VeryBigPersonNumeric_proto.VeryBigPersonNumeric person = response.readEntity(VeryBigPersonNumeric_proto.VeryBigPersonNumeric.class);
+//         Assert.assertTrue("tanicka".equals(person.getS0()));
       }
    }
 }

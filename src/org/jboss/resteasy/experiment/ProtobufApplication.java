@@ -12,6 +12,7 @@ public class ProtobufApplication extends Application
    public Set<Class<?>> getClasses() {
       Set<Class<?>> classes = new HashSet<Class<?>>();
       classes.add(ProtobufWFResource.class);
+      classes.add(ProtobufWFResourceNumeric.class);
       classes.add(JsonBindingProviderExp.class);
       classes.add(ProtobufProvider.class);
       return classes;

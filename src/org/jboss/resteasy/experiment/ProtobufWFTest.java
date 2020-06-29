@@ -62,7 +62,8 @@ public class ProtobufWFTest {
    private static Person tanicka = new Person(3, "tanicka", "a@b");
    private static Person_proto.Person ron_proto = Person_proto.Person.newBuilder().setId(1).setName("ron").setEmail("ron@jboss.org").build();
    private static VeryBigPerson veryBigRon = PersonUtil.getVeryBigPerson("ron");
-   private static VeryBigPerson_proto.VeryBigPerson veryBigRon_proto = PersonUtil.getVeryBigPerson_proto("ron");
+   private static VeryBigPerson_proto.VeryBigPerson veryBigRon_proto = PersonUtil.getVeryBigPerson_proto();
+   private static VeryBigPersonNumeric veryBigRonNumeric = PersonUtil.getVeryBigPersonNumeric();
 
    private String generateURL(String path) {
       //            return PortProviderUtil.generateURL(path, "ProtobufTest-0.0.1-SNAPSHOT");
@@ -710,7 +711,7 @@ public class ProtobufWFTest {
       //      Assert.fail("ok");
    }
 
-   @Test
+   //@Test
    public void testVeryBigPersonJSONNettyAsync() throws Exception {
       //      doVeryBigTest("json");
 //      System.out.println("VeryBigPerson (JSON/netty) bytes [before]: " + JsonBindingProviderExp.getSize());
@@ -723,7 +724,7 @@ public class ProtobufWFTest {
       //      Assert.fail("ok");
    }
 
-   @Test
+   //@Test
    public void testVeryBigPerson_protoNettyAsync() throws Exception
    {
       Builder request = nettyClient.target(generateURL("/big/protobuf/proto")).request();
@@ -765,5 +766,59 @@ public class ProtobufWFTest {
       String s = response.readEntity(String.class);
       System.out.println("s: " + s);
       System.out.println(response.getHeaderString("Location"));
+   }
+   
+   ////////////////////////////////////////////////////////////////////////////////////////////////////
+   @Test
+   public void testVeryBigPersonNumericProto() {
+      //      doTest("protobuf");
+      long start = System.currentTimeMillis();
+      for (int i = 0; i < count; i++) {
+         doVeryBigPersonNumericTest("protobuf");
+      }
+      System.out.println("Person (protobuf) time:  " + (System.currentTimeMillis() - start));
+      System.out.println("Person (protobuf) bytes: " + ProtobufProvider.getSize());
+      Assert.fail("ok"); // Get details
+   }
+
+//   //   //@Test
+//   public void testPersonJSON() {
+//      //      doTest("json");
+//      long start = System.currentTimeMillis();
+//      for (int i = 0; i < count; i++) {
+//         doTest("json");
+//      }
+//      System.out.println("Person (JSON) time:  " + (System.currentTimeMillis() - start));
+//      System.out.println("Person (JSON) bytes: " + JsonBindingProviderExp.getSize());
+//      //      Assert.fail("ok");
+//   }
+
+//   //   //@Test
+//   public void testPerson_proto()
+//   {         
+//      Builder request = client.target(generateURL("/protobuf/proto")).request();
+//      //      Response response = request.post(Entity.entity(ron_proto, "application/protobuf"));
+//      //      Person_proto.Person person = response.readEntity(Person_proto.Person.class);
+//      //      Assert.assertTrue(tanicka_proto.getEmail().equals(person.getEmail()));
+//      long start = System.currentTimeMillis();
+//      for (int i = 0; i < count; i++)
+//      {
+//         Response response = request.post(Entity.entity(ron_proto, "application/protobuf"));
+//         //    System.out.println("status: " + response.getStatus());
+//         Person_proto.Person person = response.readEntity(Person_proto.Person.class);
+//         Assert.assertTrue("tanicka".equals(person.getName()));
+//      }
+//      System.out.println("Person_proto time:  " + (System.currentTimeMillis() - start));
+//      System.out.println("Person_proto bytes: " + ProtobufProvider.getSize());
+//      //      Assert.fail("ok");
+//   }
+
+   public void doVeryBigPersonNumericTest(String transport)
+   {
+      Builder request = client.target(generateURL("/" + transport)).request();
+      Response response = request.post(Entity.entity(veryBigRonNumeric, "application/" + transport));
+      //    System.out.println("status: " + response.getStatus());
+      Person person = response.readEntity(Person.class);
+      Assert.assertEquals(tanicka, person);
    }
 }

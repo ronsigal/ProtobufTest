@@ -16,7 +16,7 @@ public class ProtobufWFResource
    private static Person tanicka = new Person(3, "tanicka", "a@b");
    private static Person_proto.Person tanicka_proto = Person_proto.Person.newBuilder().setId(3).setName("tanicka").setEmail("a@b.c").build();
    private static VeryBigPerson veryBigTanicka = PersonUtil.getVeryBigPerson("tanicka");
-   private static VeryBigPerson_proto.VeryBigPerson veryBigTanicka_proto = PersonUtil.getVeryBigPerson_proto("tanicka");
+   private static VeryBigPerson_proto.VeryBigPerson veryBigTanicka_proto = PersonUtil.getVeryBigPerson_proto();
    
    @POST
    @Path("json")
