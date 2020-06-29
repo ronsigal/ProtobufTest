@@ -62,11 +62,11 @@ public class PersonUtil
             Field f = VeryBigPerson.class.getDeclaredFields()[i];
             f.setAccessible(true);
             Method m = builder.getClass().getMethod("setS" + f.getName().substring(1), String.class);
-            if (i == 0) {
-               m.invoke(builder, f);  
-            } else {
+//            if (i == 0) {
+//               m.invoke(builder, f);
+//            } else {
                m.invoke(builder, abc.substring(i % abc.length()) + abc.substring(0, i % abc.length()));
-            }
+//            }
          }
          return builder.build();
       } catch (Exception e) {

@@ -21,7 +21,6 @@ import org.jboss.resteasy.plugins.interceptors.encoding.GZIPDecodingInterceptor;
 import org.jboss.resteasy.plugins.interceptors.encoding.GZIPEncodingInterceptor;
 import org.jboss.resteasy.plugins.protobuf.ProtobufProvider;
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -40,7 +39,7 @@ import reactor.netty.http.client.HttpClient;
  */
 public class ProtobufWFTestNumeric {
 
-   private static int count = 1000;
+   private static int count = 10;
 
    private static Client httpClient;
    private static Client httpClientAsync;
@@ -56,9 +55,7 @@ public class ProtobufWFTestNumeric {
    private static final Variant JSON_VARIANT = new Variant(MediaType.APPLICATION_JSON_TYPE, (String) null, (String) null);
    private static final Variant PROTOBUF_ZIP_VARIANT = new Variant(PROTOBUF_MEDIA_TYPE, (String) null, "gzip");
    private static final Variant JSON_ZIP_VARIANT = new Variant(MediaType.APPLICATION_JSON_TYPE, (String) null, "gzip");
-   private static VeryBigPerson veryBigRon = PersonUtil.getVeryBigPerson("ron");
    private static VeryBigPersonNumeric veryBigRonNumeric = PersonUtil.getVeryBigPersonNumeric();
-   private static VeryBigPerson_proto.VeryBigPerson veryBigRon_proto = PersonUtil.getVeryBigPerson_proto();
    private static VeryBigPersonNumeric_proto.VeryBigPersonNumeric veryBigRonNumeric_proto = PersonUtil.getVeryBigPersonNumeric_proto();
 
    private String generateURL(String path) {
@@ -237,7 +234,7 @@ public class ProtobufWFTestNumeric {
    
    private void doTestOnce(Client client, Variant variant, String transport, boolean async) throws Exception
    {
-      Builder request = client.target(generateURL("/big/" + transport)).request();
+      Builder request = client.target(generateURL("/numeric/big/" + transport)).request();
       Object entity = "json".equals(transport) ? veryBigRonNumeric : veryBigRonNumeric_proto;
       Response response = null;
       if (async) {
